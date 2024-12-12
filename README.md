@@ -18,38 +18,38 @@ You can install these packages using the following command:
 sudo apt install ros-<your_distro>-<package_name>
 ```
 ## Workspace Setup
-1. Create your workspace and src folder:
+### 1. Create your workspace and src folder:
 ```bash
 mkdir -p [your_name]_ws/src
 cd [your_name]_ws/src
 ```
-2. Clone this repository into the src folder:
+### 2. Clone this repository into the src folder:
 ```bash
 git clone https://github.com/Cheguevara-Sureshkumar/my_robot.git
 ```
-3. Build workspace:
+### 3. Build workspace:
 ```bash
 cd ../
 colcon build --symlink-install
 ```
 ## Running Simulation:
-1. Open a new terminal and source the workspace setup files:
+### 1. Open a new terminal and source the workspace setup files:
 ```bash
 source install/setup.bash
 ```
-2. Launch the Gazebo world and spawn the robot:
-```bash
-ros2 launch bot_world bot_test_world.launch.py
-```
-3. Launch Rviz visualization
+### 2. Launch the RViz visualization:
 ```bash
 ros2 launch bot_spawn rviz.launch.py
 ```
-4. In a third terminal, launch the teleoperation control:
+### 3. In another terminal, launch the Gazebo world and spawn the robot:
+```bash
+ros2 launch bot_world bot_test_world.launch.py
+```
+### 4. In a third terminal, launch the teleoperation control:
 ```bash
 ros2 launch bot_spawn control.launch.py
 ```
-5. In a fourth terminal, launch the Lidar data reading and filtering:
+### 5. In a fourth terminal, launch the Lidar data reading and filtering:
 ```bash
 ros2 launch bot_control laser_scan.launch.py
 ```
