@@ -37,13 +37,13 @@ colcon build --symlink-install
 ```bash
 source install/setup.bash
 ```
-### 2. Launch the RViz visualization:
-```bash
-ros2 launch bot_spawn rviz.launch.py
-```
-### 3. In another terminal, launch the Gazebo world and spawn the robot:
+### 2. Launch the Gazebo world and spawn the robot:
 ```bash
 ros2 launch bot_world bot_test_world.launch.py
+```
+### 3. In another terminal, launch the RViz visualization:
+```bash
+ros2 launch bot_spawn rviz.launch.py
 ```
 ### 4. In a third terminal, launch the teleoperation control:
 ```bash
