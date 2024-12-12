@@ -1,0 +1,13 @@
+Panels:
+  - Class: rviz_common/Displays
+  - Class: rviz_common/Views
+Visualization Manager:
+  Displays:
+    - Class: rviz_default_plugins/LaserScan
+      Enabled: true
+      Topic: /filtered_scan
+      Size (m): 0.1
+      Style: Flat Squares
+      Color: 255; 0; 0
+  Global Options:
+    Fixed Frame: base_link
