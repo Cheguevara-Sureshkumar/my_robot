@@ -47,6 +47,12 @@ def generate_launch_description():
         output='screen'
     )
 
+    static_tf = Node(
+    package='tf2_ros',
+    executable='static_transform_publisher',
+    arguments=['0', '0', '0', '0', '0', '0', 'odom', 'base_link']
+    )
+
     camera_node = Node(
         package='image_transport',
         executable='republish',
@@ -74,6 +80,7 @@ def generate_launch_description():
         rviz_node,
         diff_drive_spawner,
         joint_broad_spawner,
+        static_tf,
         lidar_node,
         camera_node
     ])
