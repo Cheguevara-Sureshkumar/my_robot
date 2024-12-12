@@ -1,18 +1,14 @@
 import os
-
 from ament_index_python.packages import get_package_share_directory
-
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-
 from launch_ros.actions import Node
 
 def generate_launch_description():
     
     package_name = 'bot_spawn'
 
-    # Include the robot state publisher launch file
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory(package_name),'launch','rsp.launch.py'
@@ -23,7 +19,7 @@ def generate_launch_description():
     rviz_config_path = os.path.join(
         get_package_share_directory(package_name), 
         'rviz', 
-        'view_bot.rviz'  # Assumes you'll create this config file
+        'view_bot.rviz'
     )
 
     rviz_node = Node(
@@ -51,48 +47,28 @@ def generate_launch_description():
         output='screen'
     )
 
-    # Launch the LIDAR node if it exists in your setup
-    # In your launch file, add:
     camera_node = Node(
-
         package='image_transport',
-
         executable='republish',
-
         arguments=['raw', 'compressed'],
-
         remappings=[
-
             ('in', '/camera/image_raw'),
-
             ('out', '/camera/image_compressed')
-
         ],
-
         parameters=[{'use_sim_time': True}]
-
     )
-
 
     lidar_node = Node(
-
         package='pointcloud_to_laserscan',
-
         executable='pointcloud_to_laserscan_node',
-
         parameters=[{'use_sim_time': True}],
-
         remappings=[
-
             ('cloud_in', '/scan'),
-
             ('scan', '/processed_scan')
-
         ]
-
     )
 
-    # Launch them all!
+    # Launch them all
     return LaunchDescription([
         rsp,
         rviz_node,

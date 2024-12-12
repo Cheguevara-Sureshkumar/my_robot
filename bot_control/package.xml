@@ -4,7 +4,7 @@
   <name>bot_control</name>
   <version>0.0.0</version>
   <description>Laser scan filtering package</description>
-  <maintainer email="your.email@example.com">Your Name</maintainer>
+  <maintainer email="cheguevarasureshkumar@gmail.com">cheguevarasureshkumar</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>

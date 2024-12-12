@@ -1,8 +1,6 @@
 import os
 import sys
-
 from ament_index_python.packages import get_package_share_directory
-
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, LogInfo
 from launch.launch_description_sources import PythonLaunchDescriptionSource
@@ -10,11 +8,8 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
 def generate_launch_description():
-    
     package_name='bot_world'
-
     try:
-        # Log package directory for debugging
         pkg_dir = get_package_share_directory(package_name)
         print(f"Package directory: {pkg_dir}")
     except Exception as e:
@@ -32,7 +27,7 @@ def generate_launch_description():
         sys.exit(1)
 
     try:
-        # Include the Gazebo launch file, provided by the gazebo_ros package
+        # Include the Gazebo launch file
         gazebo = IncludeLaunchDescription(
             PythonLaunchDescriptionSource([os.path.join(
                 get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
@@ -42,13 +37,12 @@ def generate_launch_description():
         print(f"Error loading Gazebo launch file: {e}")
         sys.exit(1)
 
-    # Run the spawner node from the gazebo_ros package
     spawn_entity = Node(
         package='gazebo_ros', 
         executable='spawn_entity.py',
         arguments=[
             '-topic', 'robot_description',
-            '-entity', 'bot_' + str(os.getpid())  # Use a unique entity name
+            '-entity', 'bot_' + str(os.getpid())
         ],
         output='screen',
         on_exit=[LogInfo(msg='Spawn entity process completed')]
@@ -70,7 +64,7 @@ def generate_launch_description():
         on_exit=[LogInfo(msg='Joint broad controller spawned')]
     )
     
-    # Launch them all!
+    # Launch them all
     return LaunchDescription([
         rsp,
         gazebo,

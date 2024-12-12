@@ -5,13 +5,11 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-# find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(laser_geometry REQUIRED)
 
-# Add executable
 add_executable(reading_laser src/reading_laser.cpp)
 ament_target_dependencies(reading_laser 
   rclcpp 
@@ -19,13 +17,11 @@ ament_target_dependencies(reading_laser
   laser_geometry
 )
 
-# Install targets
 install(TARGETS
   reading_laser
   DESTINATION lib/${PROJECT_NAME}
 )
 
-# Install launch files
 install(DIRECTORY
   launch
   DESTINATION share/${PROJECT_NAME}
