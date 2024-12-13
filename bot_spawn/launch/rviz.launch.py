@@ -19,7 +19,7 @@ def generate_launch_description():
     rviz_config_path = os.path.join(
         get_package_share_directory(package_name), 
         'rviz', 
-        'view_bot.rviz'
+        'drive_bot.rviz'
     )
 
     rviz_node = Node(
