@@ -23,7 +23,7 @@ private:
         *filtered_scan = *original_scan;
 
         double min_angle = 0.0;  // 0 degrees
-        double max_angle = M_PI * 2/3;  // 120 degrees
+        double max_angle = M_PI * 1/3;  // 120 degrees
 
         size_t start_index = static_cast<size_t>(std::max(0.0, 
             std::floor((min_angle - original_scan->angle_min) / original_scan->angle_increment)
